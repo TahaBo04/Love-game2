@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Future Together Simulator</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <!-- Starry background -->
+  <canvas id="stars"></canvas>
+
+  <!-- Header -->
+  <header class="topbar">
+    <div class="brand">
+      <span id="logoHeart">♥</span>
+      <span id="brandText">Future Together Simulator</span>
+    </div>
+
+    <div class="controls">
+      <button id="surpriseBtn" class="pill">Surprise me ✨</button>
+      <button id="musicBtn" class="pill" aria-pressed="false">Music: Off ♪</button>
+      <button id="themeBtn" class="pill" aria-pressed="false" title="Toggle day/night">🌙</button>
+    </div>
+  </header>
+
+  <!-- Greeting / Prompt -->
+  <section class="hero">
+    <h1>
+      Where should we go today, <span id="herName">Soumaya</span>?<br />
+      <small>With love, <span id="myName">Taha</span></small>
+    </h1>
+    <p class="hint">Pick a scene below and watch our little future unfold.</p>
+  </section>
+
+  <!-- Scene Picker -->
+  <section class="grid">
+    <button class="card" data-scene="home">
+      <div class="icon">🏠</div>
+      <div class="label">Our Cozy Home</div>
+    </button>
+    <button class="card" data-scene="car">
+      <div class="icon">🚗</div>
+      <div class="label">Road Trip</div>
+    </button>
+    <button class="card" data-scene="plane">
+      <div class="icon">✈️</div>
+      <div class="label">Fly Away</div>
+    </button>
+    <button class="card" data-scene="picnic">
+      <div class="icon">🧺</div>
+      <div class="label">Picnic Date</div>
+    </button>
+  </section>
+
+  <!-- Scene Stage -->
+  <main id="stage">
+    <!-- HOME SCENE -->
+    <section class="scene" id="scene-home" aria-hidden="true">
+      <div class="room">
+        <div class="sofa"></div>
+        <div class="lamp"></div>
+        <div class="frame glow">
+          <div class="frame-inner">
+            <div class="frame-names">
+              <span id="frameNames">Taha & Soumaya</span>
+            </div>
+          </div>
+        </div>
+        <div class="sparkles"></div>
+      </div>
+      <p class="caption">
+        This is our living room. Your favorite mug on the table, my hoodie on the chair.
+        Someday this won’t be a dream — it will be our everyday.
+      </p>
+    </section>
+
+    <!-- CAR SCENE -->
+    <section class="scene" id="scene-car" aria-hidden="true">
+      <div class="road">
+        <div class="car">
+          <div class="plate" id="plateText">TS-❤️</div>
+        </div>
+        <div class="dashes"></div>
+      </div>
+      <p class="caption">
+        Windows down, music up, your hand in mine. Wherever we go, it’s perfect because it’s with you.
+      </p>
+    </section>
+
+    <!-- PLANE SCENE -->
+    <section class="scene" id="scene-plane" aria-hidden="true">
+      <svg class="sky" viewBox="0 0 800 300" preserveAspectRatio="xMidYMid meet">
+        <defs>
+          <path id="flightPath" d="M 20 250 C 200 50, 600 50, 780 200" />
+        </defs>
+        <path d="M 20 250 C 200 50, 600 50, 780 200" class="path"/>
+        <g class="plane">
+          <text class="plane-body" text-anchor="middle" y="0">✈️</text>
+        </g>
+      </svg>
+      <p class="caption">
+        One day we’ll stamp our passports together, chase sunsets, and come home with stories only we understand.
+      </p>
+    </section>
+
+    <!-- PICNIC SCENE -->
+    <section class="scene" id="scene-picnic" aria-hidden="true">
+      <div class="park">
+        <div class="blanket"></div>
+        <div class="basket"></div>
+        <div class="note" id="loveNote" title="Click me">💌</div>
+      </div>
+      <p class="caption">
+        Fresh air, soft grass, your laugh. I’ll pack your favorites, you bring that smile that melts me every time.
+      </p>
+    </section>
+  </main>
+
+  <!-- Personal message -->
+  <footer class="footer">
+    <p id="personalMessage">This is how I imagine us — and I can’t wait to make it real.</p>
+  </footer>
+
+  <!-- Audio (replace src with your track if you want) -->
+  <audio id="bgm" loop preload="auto">
+    <!-- You can put an mp3 in the same folder and change the src below -->
+    <source src="" type="audio/mpeg" />
+  </audio>
+
+  <script src="script.js"></script>
+</body>
+</html>
