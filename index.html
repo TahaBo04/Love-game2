@@ -1,131 +1,121 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
+  <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Future Together Simulator</title>
+  <title>Future Together • Pro</title>
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-  <!-- Starry background -->
-  <canvas id="stars"></canvas>
-
-  <!-- Header -->
   <header class="topbar">
     <div class="brand">
-      <span id="logoHeart">♥</span>
-      <span id="brandText">Future Together Simulator</span>
+      <span class="heart">♥</span>
+      <strong>Future Together</strong>
+      <span class="muted">• Pro</span>
     </div>
-
-    <div class="controls">
-      <button id="surpriseBtn" class="pill">Surprise me ✨</button>
-      <button id="musicBtn" class="pill" aria-pressed="false">Music: Off ♪</button>
-      <button id="themeBtn" class="pill" aria-pressed="false" title="Toggle day/night">🌙</button>
-    </div>
+    <nav class="actions">
+      <button id="btnRandom" class="btn">Surprise ✨</button>
+      <button id="btnPrev" class="btn">◀</button>
+      <button id="btnNext" class="btn">▶</button>
+      <button id="btnMusic" class="btn" aria-pressed="false">Music: Off ♪</button>
+      <button id="btnTheme" class="btn" aria-pressed="false" title="Toggle theme">🌙</button>
+    </nav>
   </header>
 
-  <!-- Greeting / Prompt -->
-  <section class="hero">
-    <h1>
-      Where should we go today, <span id="herName">Soumaya</span>?<br />
-      <small>With love, <span id="myName">Taha</span></small>
-    </h1>
-    <p class="hint">Pick a scene below and watch our little future unfold.</p>
-  </section>
+  <div class="layout">
+    <!-- LEFT: SCENE LIST -->
+    <aside class="sidebar" id="sceneList">
+      <!-- Filled by JS -->
+    </aside>
 
-  <!-- Scene Picker -->
-  <section class="grid">
-    <button class="card" data-scene="home">
-      <div class="icon">🏠</div>
-      <div class="label">Our Cozy Home</div>
-    </button>
-    <button class="card" data-scene="car">
-      <div class="icon">🚗</div>
-      <div class="label">Road Trip</div>
-    </button>
-    <button class="card" data-scene="plane">
-      <div class="icon">✈️</div>
-      <div class="label">Fly Away</div>
-    </button>
-    <button class="card" data-scene="picnic">
-      <div class="icon">🧺</div>
-      <div class="label">Picnic Date</div>
-    </button>
-  </section>
-
-  <!-- Scene Stage -->
-  <main id="stage">
-    <!-- HOME SCENE -->
-    <section class="scene" id="scene-home" aria-hidden="true">
-      <div class="room">
-        <div class="sofa"></div>
-        <div class="lamp"></div>
-        <div class="frame glow">
-          <div class="frame-inner">
-            <div class="frame-names">
-              <span id="frameNames">Taha & Soumaya</span>
+    <!-- CENTER: STAGE -->
+    <main class="stage-wrap">
+      <div class="stage" id="stage" aria-live="polite" aria-atomic="true">
+        <!-- dynamic background via CSS var -->
+        <div class="stage-overlay">
+          <div class="scene-content" id="sceneContent">
+            <!-- Title + emoji -->
+            <h1 class="scene-title">
+              <span id="sceneEmoji" class="emoji">🏠</span>
+              <span id="sceneTitle">Our Cozy Home</span>
+            </h1>
+            <!-- Animated area -->
+            <div class="scene-canvas">
+              <!-- minimal demo anims (always work without images) -->
+              <div id="animHome" class="anim anim-home" hidden>
+                <div class="sofa"></div><div class="lamp"></div>
+                <div class="frame"><span id="pairNames">Taha & Soumaya</span></div>
+              </div>
+              <div id="animCar" class="anim anim-car" hidden>
+                <div class="road"></div><div class="car"><div id="plate">TS-❤️</div></div>
+              </div>
+              <div id="animPlane" class="anim anim-plane" hidden>
+                <div class="plane">✈️</div><div class="path"></div>
+              </div>
+              <div id="animPicnic" class="anim anim-picnic" hidden>
+                <div class="blanket"></div><button id="loveNote" class="note">💌</button>
+              </div>
             </div>
+            <!-- Caption -->
+            <p id="sceneCaption" class="caption">
+              This is our living room… someday it will be our everyday.
+            </p>
           </div>
         </div>
-        <div class="sparkles"></div>
       </div>
-      <p class="caption">
-        This is our living room. Your favorite mug on the table, my hoodie on the chair.
-        Someday this won’t be a dream — it will be our everyday.
-      </p>
-    </section>
+    </main>
 
-    <!-- CAR SCENE -->
-    <section class="scene" id="scene-car" aria-hidden="true">
-      <div class="road">
-        <div class="car">
-          <div class="plate" id="plateText">TS-❤️</div>
+    <!-- RIGHT: CONTROL PANEL -->
+    <aside class="panel">
+      <h2>Scene Panel</h2>
+      <div class="field">
+        <label>Emoji</label>
+        <input id="inpEmoji" type="text" placeholder="e.g. 🏠" maxlength="4">
+      </div>
+      <div class="field">
+        <label>Title</label>
+        <input id="inpTitle" type="text" placeholder="Scene title">
+      </div>
+      <div class="field">
+        <label>Caption</label>
+        <textarea id="inpCaption" rows="3" placeholder="Write your message…"></textarea>
+      </div>
+      <div class="field">
+        <label>Background image (optional)</label>
+        <input id="inpBg" type="text" placeholder="assets/home.jpg">
+        <small class="muted">Drop images into <code>assets/</code> and put the path here.</small>
+      </div>
+      <div class="field two">
+        <div>
+          <label>Your name</label>
+          <input id="inpYou" type="text" placeholder="Taha">
         </div>
-        <div class="dashes"></div>
+        <div>
+          <label>Her name</label>
+          <input id="inpHer" type="text" placeholder="Soumaya">
+        </div>
       </div>
-      <p class="caption">
-        Windows down, music up, your hand in mine. Wherever we go, it’s perfect because it’s with you.
-      </p>
-    </section>
-
-    <!-- PLANE SCENE -->
-    <section class="scene" id="scene-plane" aria-hidden="true">
-      <svg class="sky" viewBox="0 0 800 300" preserveAspectRatio="xMidYMid meet">
-        <defs>
-          <path id="flightPath" d="M 20 250 C 200 50, 600 50, 780 200" />
-        </defs>
-        <path d="M 20 250 C 200 50, 600 50, 780 200" class="path"/>
-        <g class="plane">
-          <text class="plane-body" text-anchor="middle" y="0">✈️</text>
-        </g>
-      </svg>
-      <p class="caption">
-        One day we’ll stamp our passports together, chase sunsets, and come home with stories only we understand.
-      </p>
-    </section>
-
-    <!-- PICNIC SCENE -->
-    <section class="scene" id="scene-picnic" aria-hidden="true">
-      <div class="park">
-        <div class="blanket"></div>
-        <div class="basket"></div>
-        <div class="note" id="loveNote" title="Click me">💌</div>
+      <div class="row">
+        <button id="btnSave" class="btn primary">Save Scene</button>
+        <button id="btnReset" class="btn ghost">Reset defaults</button>
       </div>
-      <p class="caption">
-        Fresh air, soft grass, your laugh. I’ll pack your favorites, you bring that smile that melts me every time.
-      </p>
-    </section>
-  </main>
+      <hr>
+      <div class="row">
+        <button id="btnExport" class="btn">Export JSON</button>
+        <label class="btn file">
+          Import JSON<input id="fileImport" type="file" accept="application/json" hidden>
+        </label>
+      </div>
+    </aside>
+  </div>
 
-  <!-- Personal message -->
   <footer class="footer">
-    <p id="personalMessage">This is how I imagine us — and I can’t wait to make it real.</p>
+    <span id="footerMsg">This is how I imagine us — and I can’t wait to make it real.</span>
   </footer>
 
-  <!-- Audio (replace src with your track if you want) -->
+  <!-- Audio -->
   <audio id="bgm" loop preload="auto">
-    <!-- You can put an mp3 in the same folder and change the src below -->
-    <source src="" type="audio/mpeg" />
+    <source src="assets/apocalypse.mp3" type="audio/mpeg">
   </audio>
 
   <script src="script.js"></script>
