@@ -21,38 +21,21 @@ const bgm = document.getElementById("bgm");
 
 /******** Scenes ********/
 const SCENES = [
-  {
-    id:"home",
-    emoji:"🏠",
-    title:"Our Little Nest",
+  { id:"home",   emoji:"🏠", title:"Our Little Nest",
     caption:"The glow of our names on the wall, your laughter in the room — this is where love feels endless and home becomes us.",
-    bg:"assets/IMG_5297.jpeg",
-    anim:"home"
-  },
-  {
-    id:"car",
-    emoji:"🚗",
-    title:"Endless Roads Together",
+    bg:"assets/IMG_5297.jpeg", anim:"home" },
+
+  { id:"car",    emoji:"🚗", title:"Endless Roads Together",
     caption:"Windows down, music up, your hand resting in mine. Every road feels like a story when I’m driving through it with you.",
-    bg:"assets/IMG_5298.jpeg",
-    anim:"car"
-  },
-  {
-    id:"plane",
-    emoji:"✈️",
-    title:"Wings of Our Love",
+    bg:"assets/IMG_5298.jpeg", anim:"car" },
+
+  { id:"plane",  emoji:"✈️", title:"Wings of Our Love",
     caption:"Someday we’ll board planes not just for trips, but for dreams. Every takeoff will carry us to sunsets painted just for us.",
-    bg:"assets/IMG_5299.jpeg",
-    anim:"plane"
-  },
-  {
-    id:"picnic",
-    emoji:"🧺",
-    title:"Picnic of Forever",
+    bg:"assets/IMG_5299.jpeg", anim:"plane" },
+
+  { id:"picnic", emoji:"🧺", title:"Picnic of Forever",
     caption:"Fresh grass under us, soft skies above us, your smile beside me. Even the simplest picnic becomes magic when it’s with you.",
-    bg:"assets/IMG_5296.jpeg",
-    anim:"picnic"
-  }
+    bg:"assets/IMG_5296.jpeg", anim:"picnic" }
 ];
 
 let index = 0;
